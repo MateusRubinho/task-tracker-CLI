@@ -1,0 +1,107 @@
+#!/usr/bin/env ruby
+require 'thor'
+require 'json'
+
+class TaskCLI < Thor
+  TASKS_FILE = "tasks.json"
+
+  # Lê as tarefas armazenadas em um arquivo JSON
+  def self.load_tasks
+    if File.exist?(TASKS_FILE)
+      JSON.parse(File.read(TASKS_FILE))
+    else
+      []
+    end
+  end
+
+  # Salva as tarefas no arquivo JSON
+  def self.save_tasks(tasks)
+    File.write(TASKS_FILE, JSON.pretty_generate(tasks))
+  end
+
+  # Comando 'add' para adicionar uma nova tarefa
+  desc "add TASK", "Add a new task"
+  def add(task_name)
+    tasks = self.class.load_tasks
+    task_id = tasks.empty? ? 1 : tasks.last['id'] + 1
+    new_task = { 'id' => task_id, 'name' => task_name, 'status' => 'todo' }
+    tasks << new_task
+    self.class.save_tasks(tasks)
+    puts "Task added successfully (ID: #{task_id})"
+  end
+
+  # Comando 'update' para atualizar o nome de uma tarefa
+  desc "update ID TASK", "Update a task"
+  def update(id, task_name)
+    tasks = self.class.load_tasks
+    task = tasks.find { |t| t['id'] == id.to_i }
+    if task
+      task['name'] = task_name
+      self.class.save_tasks(tasks)
+      puts "Task ID #{id} updated successfully"
+    else
+      puts "Task ID #{id} not found"
+    end
+  end
+
+  # Comando 'delete' para deletar uma tarefa
+  desc "delete ID", "Delete a task"
+  def delete(id)
+    tasks = self.class.load_tasks
+    task = tasks.find { |t| t['id'] == id.to_i }
+    if task
+      tasks.delete(task)
+      self.class.save_tasks(tasks)
+      puts "Task ID #{id} deleted successfully"
+    else
+      puts "Task ID #{id} not found"
+    end
+  end
+
+  # Comando 'mark-in-progress' para marcar uma tarefa como 'in-progress'
+  desc "mark-in-progress ID", "Mark task as in progress"
+  def mark_in_progress(id)
+    tasks = self.class.load_tasks
+    task = tasks.find { |t| t['id'] == id.to_i }
+    if task
+      task['status'] = 'in-progress'
+      self.class.save_tasks(tasks)
+      puts "Task ID #{id} marked as in progress"
+    else
+      puts "Task ID #{id} not found"
+    end
+  end
+
+  # Comando 'mark-done' para marcar uma tarefa como 'done'
+  desc "mark-done ID", "Mark task as done"
+  def mark_done(id)
+    tasks = self.class.load_tasks
+    task = tasks.find { |t| t['id'] == id.to_i }
+    if task
+      task['status'] = 'done'
+      self.class.save_tasks(tasks)
+      puts "Task ID #{id} marked as done"
+    else
+      puts "Task ID #{id} not found"
+    end
+  end
+
+  # Comando 'list' para listar todas as tarefas ou por status
+  desc "list [STATUS]", "List all tasks or tasks by status"
+  def list(status = nil)
+    tasks = self.class.load_tasks
+    if status
+      tasks = tasks.select { |t| t['status'] == status }
+    end
+    if tasks.empty?
+      puts "No tasks found."
+    else
+      tasks.each do |task|
+        puts "ID: #{task['id']}, Name: #{task['name']}, Status: #{task['status']}"
+      end
+    end
+  end
+end
+
+# Inicia a CLI
+TaskCLI.start(ARGV)

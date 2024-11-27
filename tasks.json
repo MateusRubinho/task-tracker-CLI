@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Buy groceries",
+    "status": "todo"
+  },
+  {
+    "id": 2,
+    "name": "task teste",
+    "status": "todo"
+  },
+  {
+    "id": 3,
+    "name": "task teste2",
+    "status": "todo"
+  },
+  {
+    "id": 4,
+    "name": "task teste123",
+    "status": "todo"
+  }
+]
