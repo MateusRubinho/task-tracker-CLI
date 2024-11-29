@@ -5,7 +5,6 @@ require 'json'
 class TaskCLI < Thor
   TASKS_FILE = "tasks.json"
 
-  # Lê as tarefas armazenadas em um arquivo JSON
   def self.load_tasks
     if File.exist?(TASKS_FILE)
       JSON.parse(File.read(TASKS_FILE))
@@ -14,12 +13,10 @@ class TaskCLI < Thor
     end
   end
 
-  # Salva as tarefas no arquivo JSON
   def self.save_tasks(tasks)
     File.write(TASKS_FILE, JSON.pretty_generate(tasks))
   end
 
-  # Comando 'add' para adicionar uma nova tarefa
   desc "add TASK", "Add a new task"
   def add(task_name)
     tasks = self.class.load_tasks
@@ -30,7 +27,6 @@ class TaskCLI < Thor
     puts "Task added successfully (ID: #{task_id})"
   end
 
-  # Comando 'update' para atualizar o nome de uma tarefa
   desc "update ID TASK", "Update a task"
   def update(id, task_name)
     tasks = self.class.load_tasks
@@ -44,7 +40,6 @@ class TaskCLI < Thor
     end
   end
 
-  # Comando 'delete' para deletar uma tarefa
   desc "delete ID", "Delete a task"
   def delete(id)
     tasks = self.class.load_tasks
