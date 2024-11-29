@@ -3,7 +3,14 @@
  O Task tracker é um projeto usado para rastrear e gerenciar suas tarefas usando uma interface de linha de comando simples (CLI).
  O aplicativo deve ser executado a partir da linha de comando, aceitar ações e entradas do usuário como argumentos e armazenar as tarefas em um arquivo JSON.
 
-## Exemplo
+# GUIA
+
+1° Instale o Ruby: sudo apt update && sudo apt install ruby
+2° Instale o Thor: sudo gem install thor 
+3° clone o projeto: git clone https://github.com/MateusRubinho/task-tracker-CLI.git
+4° Execute os comandos usando ./ ou adicione o seu script as variaves de ambiente
+
+## Script
 
 A lista de comandos e seu uso é dada abaixo:
 
