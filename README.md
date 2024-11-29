@@ -1,6 +1,7 @@
 # Task Tracker
 
-O Task tracker é um projeto usado para rastrear e gerenciar suas tarefas. O aplicativo deve ser executado a partir da linha de comando, aceitar ações e entradas do usuário como argumentos e armazenar as tarefas em um arquivo JSON.
+ O Task tracker é um projeto usado para rastrear e gerenciar suas tarefas usando uma interface de linha de comando simples (CLI).
+ O aplicativo deve ser executado a partir da linha de comando, aceitar ações e entradas do usuário como argumentos e armazenar as tarefas em um arquivo JSON.
 
 ## Exemplo
 
