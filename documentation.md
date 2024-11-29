@@ -1,10 +1,9 @@
-1 ********************************************************
-.criar um arquivo sem extensão
-2 ********************************************************
-.script para tornar o arquivo executavel(ubuntu)
+1 criar um arquivo sem extensão
+
+2 script para tornar o arquivo executavel(ubuntu)
     chmod +x task-cli
-3 ********************************************************
-.adicionar o PATH do scritp ao bash ou zsh(caso use)
+
+3 adicionar o PATH do scritp ao bash ou zsh(caso use)
 exemplo: export export PATH="/home/rubinho-ruby/scripts:$PATH"
 
 nano ~/.bashrc (bash)
@@ -12,12 +11,12 @@ source ~/.bashrc
 
 nano ~/.zshrc (zsh)
 source ~/.zshrc
-4 ********************************************************
-.baixar o Thor
+
+4 baixar o Thor
     sudo gem install thor
 
-5 ********************************************************
-.executar os comando 
+5 executar os comando 
+
 ### Adicionando uma nova tarefa
 `task-cli add "Buy groceries"`
 
