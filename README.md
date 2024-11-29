@@ -6,8 +6,11 @@
 # GUIA
 
 1° Instale o Ruby: sudo apt update && sudo apt install ruby
+
 2° Instale o Thor: sudo gem install thor 
+
 3° clone o projeto: git clone https://github.com/MateusRubinho/task-tracker-CLI.git
+
 4° Execute os comandos usando ./ ou adicione o seu script as variaves de ambiente
 
 ## Script
